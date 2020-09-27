@@ -110,14 +110,7 @@ def DRAW_REGULAR_HEXAGON(surface):
         2
     )
 
-
-
-GLOBAL_TOP_TRAPEZOID = None
 def DRAW_TRAPEZOID_TOP(surface, y=0):
-    global GLOBAL_TOP_TRAPEZOID
-    if GLOBAL_TOP_TRAPEZOID:
-        surface.fill((0, 0, 0), GLOBAL_TOP_TRAPEZOID)
-
     GLOBAL_TOP_TRAPEZOID = p(surface, TRAPEZOID_COLORS['TOP'], [
         rotate(CENTER_COORDS, [
             CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y)
@@ -133,12 +126,7 @@ def DRAW_TRAPEZOID_TOP(surface, y=0):
         ], math.radians(-30)),
     ])
 
-GLOBAL_BOTTOM_TRAPEZOID = None
 def DRAW_TRAPEZOID_BOTTOM(surface, y=0):
-    global GLOBAL_BOTTOM_TRAPEZOID
-    if GLOBAL_BOTTOM_TRAPEZOID:
-        surface.fill((0, 0, 0), GLOBAL_BOTTOM_TRAPEZOID)
-
     GLOBAL_BOTTOM_TRAPEZOID = p(surface, TRAPEZOID_COLORS['BOTTOM'], [
         rotate(CENTER_COORDS, [
             CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y)
@@ -147,9 +135,57 @@ def DRAW_TRAPEZOID_BOTTOM(surface, y=0):
             CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y)
         ], math.radians(30)),
         rotate(CENTER_COORDS, [
-            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) - TRAPEZOID_HEIGHT
         ], math.radians(30)),
         rotate(CENTER_COORDS, [
-            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) - TRAPEZOID_HEIGHT
         ], math.radians(-30)),
+    ])
+
+def DRAW_TRAPEZOID_BOTTOM_RIGHT(surface, y): 
+    GLOBAL_BOTTOM_RIGHT_TRAPEZOID = p(surface, TRAPEZOID_COLORS['BOTTOM_RIGHT'], [
+        [CENTER_COORDS[0] + (CIRCLE_RADIUS - y), CENTER_COORDS[1]], # x
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y)
+        ], math.radians(-30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) - TRAPEZOID_HEIGHT
+        ], math.radians(-30)),
+        [CENTER_COORDS[0] + (CIRCLE_RADIUS - y) - TRAPEZOID_HEIGHT, CENTER_COORDS[1]], # x
+    ])
+
+def DRAW_TRAPEZOID_BOTTOM_LEFT(surface, y): 
+    GLOBAL_BOTTOM_LEFT_TRAPEZOID = p(surface, TRAPEZOID_COLORS['BOTTOM_LEFT'], [
+        [CENTER_COORDS[0] - (CIRCLE_RADIUS -y), CENTER_COORDS[1]],
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS -y)
+        ], math.radians(30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS-y) - TRAPEZOID_HEIGHT
+        ], math.radians(30)),
+        [CENTER_COORDS[0] - (CIRCLE_RADIUS-y) + TRAPEZOID_HEIGHT, CENTER_COORDS[1]],
+    ])
+
+def DRAW_TRAPEZOID_TOP_RIGHT(surface, y):
+    GLOBAL_TOP_RIGHT_TRAPEZOID = p(surface, TRAPEZOID_COLORS["TOP_RIGHT"], [
+        [CENTER_COORDS[0] + (CIRCLE_RADIUS - y), CENTER_COORDS[1]],
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y)
+        ], math.radians(30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+        ], math.radians(30)),
+        [CENTER_COORDS[0] + (CIRCLE_RADIUS - y) - TRAPEZOID_HEIGHT, CENTER_COORDS[1]],
+    ])
+
+def DRAW_TRAPEZOID_TOP_LEFT(surface, y):
+    GLOBAL_TOP_LEFT_TRAPEZOID = p(surface, TRAPEZOID_COLORS["TOP_LEFT"], [
+        [CENTER_COORDS[0] - (CIRCLE_RADIUS - y), CENTER_COORDS[1]],
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y)
+        ], math.radians(-30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+        ], math.radians(-30)),
+        [CENTER_COORDS[0] - (CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT, CENTER_COORDS[1]],
     ])
