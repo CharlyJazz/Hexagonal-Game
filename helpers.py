@@ -1,5 +1,5 @@
-from pygame.draw import line as l
-from settings import WIDTH, HEIGHT, CIRCLE_RADIUS, RED, CENTER_COORDS, HEXAGON_LINE_COLOR
+from pygame.draw import line as l, polygon as p
+from settings import WIDTH, HEIGHT, CIRCLE_RADIUS, RED, CENTER_COORDS, HEXAGON_LINE_COLOR, TRAPEZOID_HEIGHT, TRAPEZOID_COLORS
 
 import math
 
@@ -109,3 +109,47 @@ def DRAW_REGULAR_HEXAGON(surface):
         VERTEX_COORDENATES["CENTER_TOP_30_DEGREES_RIGHT"],
         2
     )
+
+
+
+GLOBAL_TOP_TRAPEZOID = None
+def DRAW_TRAPEZOID_TOP(surface, y=0):
+    global GLOBAL_TOP_TRAPEZOID
+    if GLOBAL_TOP_TRAPEZOID:
+        surface.fill((0, 0, 0), GLOBAL_TOP_TRAPEZOID)
+
+    GLOBAL_TOP_TRAPEZOID = p(surface, TRAPEZOID_COLORS['TOP'], [
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y)
+        ], math.radians(-30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y)
+        ], math.radians(30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+        ], math.radians(30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + -1 *(CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+        ], math.radians(-30)),
+    ])
+
+GLOBAL_BOTTOM_TRAPEZOID = None
+def DRAW_TRAPEZOID_BOTTOM(surface, y=0):
+    global GLOBAL_BOTTOM_TRAPEZOID
+    if GLOBAL_BOTTOM_TRAPEZOID:
+        surface.fill((0, 0, 0), GLOBAL_BOTTOM_TRAPEZOID)
+
+    GLOBAL_BOTTOM_TRAPEZOID = p(surface, TRAPEZOID_COLORS['BOTTOM'], [
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y)
+        ], math.radians(-30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y)
+        ], math.radians(30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+        ], math.radians(30)),
+        rotate(CENTER_COORDS, [
+            CENTER_COORDS[0], CENTER_COORDS[1] + (CIRCLE_RADIUS - y) + TRAPEZOID_HEIGHT
+        ], math.radians(-30)),
+    ])

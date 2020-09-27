@@ -4,4 +4,13 @@ CENTER_COORDS = (int(WIDTH / 2), int(HEIGHT / 2))
 RED = [255, 105, 105, 0.8]
 GREEN = [85, 107, 47]
 HEXAGON_LINE_COLOR = [255, 0, 0]
-CIRCLE_RADIUS = int(40)
+CIRCLE_RADIUS = int(HEIGHT / 3)
+TRAPEZOID_HEIGHT = 40
+TRAPEZOID_COLORS = {
+    "TOP": [255, 255, 255], # WHITE
+    "TOP_RIGHT": [128, 128, 128], # Medium Gray  
+    "TOP_LEFT": [0, 128, 128], # Aqua
+    "BOTTOM": [0, 255, 0], # Navy Blue
+    "BOTTOM_RIGHT": [255, 165, 0], # Green
+    "BOTTOM_LEFT": [255, 255, 0] # Orange
+}
