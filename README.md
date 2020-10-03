@@ -1,4 +1,4 @@
-### A Hexagonal Game make in Pygame
+# A Hexagonal Game make in Pygame
 
 Trapezoid want crash with a tiny circle. Don't allow it!
 
