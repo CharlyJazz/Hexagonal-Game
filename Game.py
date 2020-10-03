@@ -19,8 +19,8 @@ def main():
     - Draw a litle hexagon in the center of the screen
     """
     running = True
-    pygame.display.set_caption('Hexagon Game')
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
+    pygame.display.set_caption('Hexagon Game')
     clock = pygame.time.Clock()
     pygame.init()
     small_hexagon = Hexagon(radius=SMALL_HEXAGON_RADIUS, color=CIRCLE_COLOR, screen_width=WIDTH, screen_height=HEIGHT, line_width=5, surface=screen)
