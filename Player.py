@@ -1,4 +1,5 @@
 import pygame, math
+
 from collision import Circle, Vector
 
 class Player:
@@ -9,14 +10,24 @@ class Player:
         self.color = color
         self.surface = surface
         self.radius_cicle = 5
+        self.v = 0.08
 
     def update(self):
+        "Update cicle movement"
+        return self.movement()
+
+    def movement(self):
+        """
+        Check Left-Right arrows to move the circle in 
+        a uniform circular movement and return a 
+        Circle instance
+        """
         key_pressed = pygame.key.get_pressed()
 
         if key_pressed[pygame.K_LEFT]:
-            self.angle -= .1
+            self.angle -= self.v
         if key_pressed[pygame.K_RIGHT]:
-            self.angle += .1
+            self.angle += self.v
 
         x = int(int(math.cos(self.angle) * (self.radius_from_center_screen)) + self.center_coords[0])
         y = int(int(math.sin(self.angle) * (self.radius_from_center_screen)) + self.center_coords[1])
