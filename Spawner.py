@@ -10,15 +10,14 @@ class Spawner:
         self.hexagon = hexagon
         # Complexities
         self.complexity = [
-            [10, 11, 12, 13, 14, 15],
-            [8, 10, 12, 13, 14, 15],
-            [7, 8, 9, 12, 15, 17],
-            [15, 15, 15, 15, 15, 15],
+            [1, 1, 1, 1, 1, 1],
             [5, 10, 15, 20, 25, 30]
         ]
         # Just to a property to help to access a the hexagon angles
         # Maybe remove in the future
         self.angles = ["top","top_right","top_left","bottom","bottom_right","bottom_left"]
+        # Angle index to not show polygon
+        self.angle_index = None
         # Create first pattern
         self.create_pattern()
         # With this line with define a relative velocity, 
@@ -41,15 +40,20 @@ class Spawner:
         Then re define self.progress to create and begin the polygon movement
         """
         complexity_index = rd.randint(0, len(self.complexity) - 1)
-        
-        angle_index = rd.randint(0, 5)
+        new_angle = rd.randint(0, 5)
+
+        # Avoid repeat safe area
+        while new_angle == self.angle_index:
+            new_angle = rd.randint(0, 5)
+            
+        self.angle_index = new_angle
         
         self.values = random.permutation(self.complexity[complexity_index])
 
         progress = {}
         
         for index, angle_name in enumerate(self.angles):
-            if index == angle_index:
+            if index == self.angle_index:
                 progress[angle_name] = self.values[index] + LIMIT_PROGRESS
             else:
                 progress[angle_name] = -10 * self.values[index]

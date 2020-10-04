@@ -25,7 +25,7 @@ def main():
     pygame.init()
     small_hexagon = Hexagon(radius=SMALL_HEXAGON_RADIUS, color=CIRCLE_COLOR, screen_width=WIDTH, screen_height=HEIGHT, line_width=5, surface=screen)
     big_hexagon = Hexagon(radius=CIRCLE_RADIUS, color=CIRCLE_COLOR, screen_width=WIDTH, screen_height=HEIGHT, line_width=3, surface=screen)
-    player = Player(screen_width=WIDTH, screen_height=HEIGHT, radius=60, color=CIRCLE_COLOR, surface=screen)
+    player = Player(screen_width=WIDTH, screen_height=HEIGHT, radius_from_center_screen=60, color=CIRCLE_COLOR, surface=screen)
     spawner = Spawner(hexagon=big_hexagon)
     while running:
         deltatime = clock.tick(60) / 1000
@@ -45,7 +45,7 @@ def main():
 
         small_hexagon.draw_hexagon_filled()
 
-        circle = player.update()
+        circle = player.update(screen)
 
         for i in trapezoids:
             if collide(i, circle):
