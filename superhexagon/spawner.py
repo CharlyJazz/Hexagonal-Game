@@ -2,7 +2,8 @@ import pygame
 import random as rd
 
 from numpy import random, array
-from settings import LIMIT_PROGRESS
+
+from superhexagon.settings import LIMIT_PROGRESS
 
 class Spawner:
     def __init__(self, hexagon):
