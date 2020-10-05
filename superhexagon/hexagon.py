@@ -1,7 +1,9 @@
 import math
 import pygame
+
 from collision import Vector, Concave_Poly, collide
-from settings import TRAPEZOID_COLORS
+
+from superhexagon.settings import TRAPEZOID_COLORS
 
 class Hexagon:
     def __init__(

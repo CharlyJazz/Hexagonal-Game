@@ -17,3 +17,4 @@ TRAPEZOID_COLORS = {
     "BOTTOM_RIGHT": [255, 165, 0], # Green
     "BOTTOM_LEFT": [255, 255, 0] # Orange
 }
+ARROW_SPEED = 0.075
