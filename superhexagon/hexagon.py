@@ -18,10 +18,11 @@ class Hexagon:
         self.color = color
         self.radius = radius
         self.center_coords = (int(screen_width / 2), int(screen_height / 2))
-        self.vertex = self.create_vertex()
+        self.vertex = self.create_vertex(0)
         self.line_width = line_width
         self.surface = surface
         self.trapezoid_height = 40
+        self.rotation = 0
 
     def draw_hexagon(self):
         """
@@ -90,18 +91,34 @@ class Hexagon:
         """
         polygon = Concave_Poly(Vector(0, 0),
             [
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y)
-                ], math.radians(-30)),
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y)
-                ], math.radians(30)),
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
-                ], math.radians(30)),
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
-                ], math.radians(-30)),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y)
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y)
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
             ]
         )
         pygame.draw.polygon(
@@ -120,18 +137,34 @@ class Hexagon:
         """
         polygon = Concave_Poly(Vector(0, 0),
             [
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + (self.radius - y)
-                ], math.radians(-30)),
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + (self.radius - y)
-                ], math.radians(30)),
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + (self.radius - y) - self.trapezoid_height
-                ], math.radians(30)),
-                self.rotate_and_get_a_vector(self.center_coords, [
-                    self.center_coords[0], self.center_coords[1] + (self.radius - y) - self.trapezoid_height
-                ], math.radians(-30))
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + (self.radius - y)
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + (self.radius - y)
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + (self.radius - y) - self.trapezoid_height
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + (self.radius - y) - self.trapezoid_height
+                    ], 
+                    math.radians(-30 + self.rotation)
+                )
             ]
         )
         pygame.draw.polygon(
@@ -150,14 +183,34 @@ class Hexagon:
         """
         polygon = Concave_Poly(Vector(0, 0),
             [
-            Vector(self.center_coords[0] + (self.radius - y), self.center_coords[1]), 
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + (self.radius - y)
-            ], math.radians(-30)),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + (self.radius - y) - self.trapezoid_height
-            ], math.radians(-30)),
-            Vector(self.center_coords[0] + (self.radius - y) - self.trapezoid_height, self.center_coords[1]),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] + (self.radius - y), 
+                        self.center_coords[1]
+                    ],
+                    math.radians(0 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0], 
+                        self.center_coords[1] + (self.radius - y)
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0], 
+                        self.center_coords[1] + (self.radius - y) - self.trapezoid_height
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] + (self.radius - y) - self.trapezoid_height,
+                        self.center_coords[1]
+                    ],
+                    math.radians(0 + self.rotation)
+                ),
             ]
         )
         pygame.draw.polygon(
@@ -176,14 +229,34 @@ class Hexagon:
         """
         polygon = Concave_Poly(Vector(0, 0),
             [
-            Vector(self.center_coords[0] - (self.radius - y), self.center_coords[1]),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + (self.radius - y)
-            ], math.radians(30)),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + (self.radius- y) - self.trapezoid_height
-            ], math.radians(30)),
-            Vector(self.center_coords[0] - (self.radius- y) + self.trapezoid_height, self.center_coords[1]),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] - (self.radius - y),
+                        self.center_coords[1]
+                    ],
+                    math.radians(0 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0], 
+                        self.center_coords[1] + (self.radius - y)
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + (self.radius- y) - self.trapezoid_height
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] - (self.radius- y) + self.trapezoid_height, 
+                        self.center_coords[1]
+                    ],
+                    math.radians(0 + self.rotation)
+                ),
             ]
         )
         pygame.draw.polygon(
@@ -201,14 +274,34 @@ class Hexagon:
         """
         polygon = Concave_Poly(Vector(0, 0),
             [
-            Vector(self.center_coords[0] + (self.radius - y), self.center_coords[1]),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y)
-            ], math.radians(30)),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
-            ], math.radians(30)),
-            Vector(self.center_coords[0] + (self.radius - y) - self.trapezoid_height, self.center_coords[1]),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] + (self.radius - y),
+                        self.center_coords[1]
+                    ], 
+                    math.radians(0 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0], 
+                        self.center_coords[1] + -1 *(self.radius - y)
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
+                    ], 
+                    math.radians(30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] + (self.radius - y) - self.trapezoid_height,
+                        self.center_coords[1]
+                    ], 
+                    math.radians(0 + self.rotation)
+                ),
             ]
         )
         pygame.draw.polygon(
@@ -226,14 +319,34 @@ class Hexagon:
         """
         polygon = Concave_Poly(Vector(0, 0),
             [
-            Vector(self.center_coords[0] - (self.radius - y), self.center_coords[1]),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y)
-            ], math.radians(-30)),
-            self.rotate_and_get_a_vector(self.center_coords, [
-                self.center_coords[0], self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
-            ], math.radians(-30)),
-            Vector(self.center_coords[0] - (self.radius - y) + self.trapezoid_height, self.center_coords[1]),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] - (self.radius - y),
+                        self.center_coords[1]
+                    ],
+                    math.radians(0 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y)
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0],
+                        self.center_coords[1] + -1 *(self.radius - y) + self.trapezoid_height
+                    ], 
+                    math.radians(-30 + self.rotation)
+                ),
+                self.rotate_and_get_a_vector(
+                    [
+                        self.center_coords[0] - (self.radius - y) + self.trapezoid_height,
+                        self.center_coords[1]
+                    ],
+                    math.radians(0 + self.rotation)
+                )
             ]
         )
         pygame.draw.polygon(
@@ -256,36 +369,42 @@ class Hexagon:
             self.vertex["CENTER_TOP_30_DEGREES_LEFT"],
         ])
 
-    def create_vertex(self):
+    def update_vertex(self, rotation):
+        self.rotation = rotation
+        self.vertex = self.create_vertex(rotation)
+
+    def create_vertex(self, rotation):
         """
         To avoid memorizing the coordinates of the 6 hexagon vertices, keep them in a dictionary
+        Updating with totation and set the rotation to use in the drawing of trapezoids
         """
+        self.rotation = rotation
         width, height = self.center_coords
         return {
-            "CENTER_BOTTOM_30_DEGREES_RIGHT": self.rotate(self.center_coords, [width, height + self.radius], math.radians(-30)),
-            "CENTER_BOTTOM_30_DEGREES_LEFT": self.rotate(self.center_coords, [width, height + self.radius], math.radians(30)),
-            "CENTER_RIGHT": [width + self.radius, height],
-            "CENTER_LEFT": [width - self.radius, height],
-            "CENTER_TOP_30_DEGREES_RIGHT": self.rotate(self.center_coords, [width, height + -1 *self.radius], math.radians(30)),
-            "CENTER_TOP_30_DEGREES_LEFT": self.rotate(self.center_coords, [width, height + -1 *self.radius], math.radians(-30))
+            "CENTER_BOTTOM_30_DEGREES_RIGHT": self.rotate([width, height + self.radius], math.radians(-30 + rotation)),
+            "CENTER_BOTTOM_30_DEGREES_LEFT": self.rotate([width, height + self.radius], math.radians(30 + rotation)),
+            "CENTER_RIGHT": self.rotate([width + self.radius, height], math.radians(0 + rotation)),
+            "CENTER_LEFT": self.rotate([width - self.radius, height], math.radians(0 + rotation)),
+            "CENTER_TOP_30_DEGREES_RIGHT": self.rotate([width, height + -1 *self.radius], math.radians(30 + rotation)),
+            "CENTER_TOP_30_DEGREES_LEFT": self.rotate([width, height + -1 *self.radius], math.radians(-30 + rotation))
         }
 
-    def rotate(self, origin, point, angle):
+    def rotate(self, point, angle):
         """
         Rotate a point counterclockwise by a given angle around a given origin.
 
         The angle should be given in radians.
         """
-        ox, oy = origin
+        ox, oy = self.center_coords
         px, py = point
 
         qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
         qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
         return qx, qy
     
-    def rotate_and_get_a_vector(self, origin, point, angle):
+    def rotate_and_get_a_vector(self, point, angle):
         """
         Return Vector from check collision
         """
-        qx, qy = self.rotate(origin, point, angle)
+        qx, qy = self.rotate(point, angle)
         return Vector(qx, qy)
