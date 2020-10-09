@@ -41,13 +41,15 @@ class GameSurface(pygame.Surface):
         
         trapezoids = self.spawner.draw_trapezoids()
 
+        self.big_hexagon.draw_lines_from_origin_to_vertex()
+
         self.player.left = self.left
         self.player.right = self.right
         self.player.update()
         self.screen.blit(self.player.image, self.player.rect)
 
         self.big_hexagon.update_vertex(self.rotation)
-        self.big_hexagon.draw_lines_from_origin_to_vertex()
+        
         self.small_hexagon.draw_hexagon()
         self.small_hexagon.draw_hexagon_filled()
 

@@ -3,7 +3,7 @@ import pygame
 
 from collision import Vector, Concave_Poly, collide
 
-from superhexagon.settings import TRAPEZOID_COLORS
+from superhexagon.settings import *
 
 class Hexagon:
     def __init__(
@@ -83,7 +83,7 @@ class Hexagon:
                 4
             )
 
-    def draw_trapezoid_top(self, y=0):
+    def draw_trapezoid_top(self, y=0, color=WHITE):
         """
           " " " "  <---  
          "       "
@@ -123,12 +123,12 @@ class Hexagon:
         )
         pygame.draw.polygon(
             self.surface, 
-            TRAPEZOID_COLORS['TOP'], 
+            color, 
             (polygon.rel_points[0],polygon.rel_points[1],polygon.rel_points[2],polygon.rel_points[3])
         )
         return polygon
 
-    def draw_trapezoid_bottom(self, y=0):
+    def draw_trapezoid_bottom(self, y=0, color=WHITE):
         """
         "             "
          "           "
@@ -169,12 +169,12 @@ class Hexagon:
         )
         pygame.draw.polygon(
             self.surface, 
-            TRAPEZOID_COLORS['TOP'], 
+            color, 
             (polygon.rel_points[0],polygon.rel_points[1],polygon.rel_points[2],polygon.rel_points[3])
         )
         return polygon
 
-    def draw_trapezoid_bottom_right(self, y):
+    def draw_trapezoid_bottom_right(self, y=0, color=WHITE):
         """
                   "
             -->  "
@@ -215,12 +215,12 @@ class Hexagon:
         )
         pygame.draw.polygon(
             self.surface, 
-            TRAPEZOID_COLORS['TOP'], 
+            color, 
             (polygon.rel_points[0],polygon.rel_points[1],polygon.rel_points[2],polygon.rel_points[3])
         )
         return polygon
     
-    def draw_trapezoid_bottom_left(self, y):
+    def draw_trapezoid_bottom_left(self, y=0, color=WHITE):
         """ 
         "
          "   <--
@@ -261,12 +261,12 @@ class Hexagon:
         )
         pygame.draw.polygon(
             self.surface, 
-            TRAPEZOID_COLORS['TOP'], 
+            color, 
             (polygon.rel_points[0],polygon.rel_points[1],polygon.rel_points[2],polygon.rel_points[3])
         )
         return polygon
 
-    def draw_trapezoid_top_right(self, y):
+    def draw_trapezoid_top_right(self, y=0, color=WHITE):
         """
         " " " "
         ->      " 
@@ -306,12 +306,12 @@ class Hexagon:
         )
         pygame.draw.polygon(
             self.surface, 
-            TRAPEZOID_COLORS['TOP'], 
+            color, 
             (polygon.rel_points[0],polygon.rel_points[1],polygon.rel_points[2],polygon.rel_points[3])
         )
         return polygon
 
-    def draw_trapezoid_top_left(self, y):
+    def draw_trapezoid_top_left(self, y=0, color=WHITE):
         """
           " " " "    
          " <-
@@ -351,7 +351,7 @@ class Hexagon:
         )
         pygame.draw.polygon(
             self.surface, 
-            TRAPEZOID_COLORS['TOP'], 
+            color, 
             (polygon.rel_points[0],polygon.rel_points[1],polygon.rel_points[2],polygon.rel_points[3])
         )
         return polygon
@@ -408,3 +408,25 @@ class Hexagon:
         """
         qx, qy = self.rotate(point, angle)
         return Vector(qx, qy)
+
+    def draw_trapezoid(self, angle, y, color):
+        """
+        Function to get drawer method depending 
+        of the angle
+        """
+        drawer = None
+
+        if angle == 'top':
+            drawer = self.draw_trapezoid_top
+        elif angle == 'top_right':
+            drawer = self.draw_trapezoid_top_right
+        elif angle == 'top_left':
+            drawer = self.draw_trapezoid_top_left
+        elif angle == 'bottom':
+            drawer = self.draw_trapezoid_bottom
+        elif angle == 'bottom_right':
+            drawer = self.draw_trapezoid_bottom_right
+        elif angle == 'bottom_left':
+            drawer = self.draw_trapezoid_bottom_left
+
+        return drawer(y, color)
