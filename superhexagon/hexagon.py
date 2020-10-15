@@ -24,61 +24,61 @@ class Hexagon:
         self.trapezoid_height = 40
         self.rotation = 0
 
-    def draw_hexagon(self):
+    def draw_hexagon(self, color):
         """
         Draw Regular Hexagon without fill
         """
         pygame.draw.line(
             self.surface,
-            self.color, 
+            color, 
             self.vertex["CENTER_BOTTOM_30_DEGREES_LEFT"],
             self.vertex["CENTER_BOTTOM_30_DEGREES_RIGHT"],
             self.line_width
         )
         pygame.draw.line(
             self.surface,
-            self.color, 
+            color, 
             self.vertex["CENTER_BOTTOM_30_DEGREES_RIGHT"],
             self.vertex["CENTER_RIGHT"],
             self.line_width
         )
         pygame.draw.line(
             self.surface,
-            self.color, 
+            color, 
             self.vertex["CENTER_BOTTOM_30_DEGREES_LEFT"],
             self.vertex["CENTER_LEFT"],
             self.line_width
         )
         pygame.draw.line(
             self.surface,
-            self.color, 
+            color, 
             self.vertex["CENTER_TOP_30_DEGREES_RIGHT"],
             self.vertex["CENTER_RIGHT"],
             self.line_width
         )
         pygame.draw.line(
             self.surface,
-            self.color, 
+            color, 
             self.vertex["CENTER_TOP_30_DEGREES_LEFT"],
             self.vertex["CENTER_LEFT"],
             self.line_width
         )
         pygame.draw.line(
             self.surface,
-            self.color, 
+            color, 
             self.vertex["CENTER_TOP_30_DEGREES_LEFT"],
             self.vertex["CENTER_TOP_30_DEGREES_RIGHT"],
             self.line_width
         )
 
-    def draw_lines_from_origin_to_vertex(self):
+    def draw_lines_from_origin_to_vertex(self, color):
         """"
         Lines from center of screen to vertex of the hexagon
         """
         for key, value in self.vertex.items():
             pygame.draw.line(
                 self.surface, 
-                self.color, 
+                color,
                 self.center_coords, value, 
                 4
             )
