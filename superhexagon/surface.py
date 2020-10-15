@@ -6,6 +6,7 @@ from superhexagon.settings import *
 from superhexagon.hexagon import *
 from superhexagon.player import *
 from superhexagon.spawner import *
+from superhexagon.color_transition import *
 
 class GameSurface(pygame.Surface):
     def __init__(self, screen):
@@ -28,6 +29,7 @@ class GameSurface(pygame.Surface):
         )
         self.spawner = Spawner(hexagon=self.big_hexagon)
         self.player = Player()
+        self.color_transition = ColorTransition()
         self.deltatime = 0
         self.left = 0
         self.right = 0
@@ -37,22 +39,18 @@ class GameSurface(pygame.Surface):
         super().__init__(self.screen.get_size())
 
     def update(self):
+        self.color_transition.update()
         self.spawner.update(self.deltatime)
-        
         trapezoids = self.spawner.draw_trapezoids()
-
-        self.big_hexagon.draw_lines_from_origin_to_vertex()
-
+        self.big_hexagon.draw_lines_from_origin_to_vertex(self.color_transition.color)
         self.player.left = self.left
         self.player.right = self.right
         self.player.update()
         self.screen.blit(self.player.image, self.player.rect)
-
         self.big_hexagon.update_vertex(self.rotation)
-        
-        self.small_hexagon.draw_hexagon()
+        self.small_hexagon.update_vertex(self.rotation)
+        self.small_hexagon.draw_hexagon(self.color_transition.color)
         self.small_hexagon.draw_hexagon_filled()
-
         for i in trapezoids:
             if collide(i, self.player.circle):
                 self.game_over = True
