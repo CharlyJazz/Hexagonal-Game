@@ -11,8 +11,7 @@ class Spawner:
         self.hexagon = hexagon
         # Complexities
         self.complexity = [
-            [1, 1, 1, 1, 1, 1],
-            [5, 10, 15, 20, 25, 30],
+            [1, 1, 1, 1, 1, 1]
         ]
         # Just to a property to help to access a the hexagon angles
         # Maybe remove in the future
