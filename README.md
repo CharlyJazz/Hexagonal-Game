@@ -2,6 +2,9 @@
 
 A proof of concept of how to create SuperHexagon in Python using Pygame.
 
+![Alt Text](https://github.com/CharlyJazz/Hexagonal-Game/blob/master/assets/readme/out.gif)
+
+
 ### Dependencies
 
 - collision==1.2.2
