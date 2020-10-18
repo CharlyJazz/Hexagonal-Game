@@ -1,5 +1,14 @@
 # A Hexagonal Game make in Pygame
 
-Trapezoid wants to collide with a small circle. Do not let that happen!
+A proof of concept of how to create SuperHexagon in Python using Pygame.
 
-<img align="center" src="https://user-images.githubusercontent.com/12489333/94980969-b9ca8f00-0504-11eb-9935-42bcee68af88.png" alt="Image of the game">
+### Dependencies
+
+- collision==1.2.2
+- pygame==1.9.6
+- numpy==1.17.4
+
+### Credits:
+
+- [SuperHexagon](https://superhexagon.com/)
+- [SuperEllipse PyGame Repository](https://github.com/ravenkls/Super-Ellipse)
