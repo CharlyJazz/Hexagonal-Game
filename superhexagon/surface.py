@@ -36,6 +36,7 @@ class GameSurface(pygame.Surface):
         self.player.set_center_point(WIDTH//2, HEIGHT//2)
         self.game_over = False
         self.rotation = 0
+        self.expand = 0
         super().__init__(self.screen.get_size())
 
     def update(self):
@@ -47,15 +48,18 @@ class GameSurface(pygame.Surface):
         self.player.right = self.right
         self.player.update()
         self.screen.blit(self.player.image, self.player.rect)
-        self.big_hexagon.update_vertex(self.rotation)
-        self.small_hexagon.update_vertex(self.rotation)
+        self.big_hexagon.update_vertex(self.rotation, 0)
+        self.small_hexagon.update_vertex(self.rotation, self.expand)
         self.small_hexagon.draw_hexagon(self.color_transition.color)
         self.small_hexagon.draw_hexagon_filled()
         for i in trapezoids:
             if collide(i, self.player.circle):
                 self.game_over = True
 
-    def rotate(self, amount):
+    def set_expantion(self, amount):
+        self.expand = amount
+
+    def set_rotation(self, amount):
         self.rotation = amount    
 
     def move_left(self, amount):
