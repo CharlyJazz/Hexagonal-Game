@@ -11,17 +11,28 @@ def main():
     clock = pygame.time.Clock()
     game = GameSurface(screen)
     MOVING = pygame.USEREVENT + 1
+    EXPANSION = pygame.USEREVENT + 2
+    EXPANSION_VALUE = 0
+    EXPANSION_SIGN = 1
     VARIABLE = 0
     ORIENTATION = 1
     ANGLE_PER_ORIENTATION = 35
     pygame.time.set_timer(MOVING, 1000)
+    pygame.time.set_timer(EXPANSION, 75)
     while True:
         deltatime = clock.tick(60) / 1000
         VARIABLE += ORIENTATION * (ANGLE_PER_ORIENTATION * deltatime)
-        game.rotate(VARIABLE)
+        game.set_rotation(VARIABLE)
+        game.set_expantion(EXPANSION_VALUE)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit()
+            elif event.type == EXPANSION:
+                EXPANSION_VALUE = EXPANSION_SIGN + EXPANSION_VALUE
+                if EXPANSION_SIGN == 1 and EXPANSION_VALUE >= 10:
+                    EXPANSION_SIGN = -1    
+                if EXPANSION_SIGN == -1 and EXPANSION_VALUE <= 0:
+                    EXPANSION_SIGN = 1
             elif event.type == MOVING:
                 # https://stackoverflow.com/questions/6824681/get-a-random-boolean-in-python
                 if (bool(random.getrandbits(1))):
