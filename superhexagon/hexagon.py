@@ -18,11 +18,12 @@ class Hexagon:
         self.color = color
         self.radius = radius
         self.center_coords = (int(screen_width / 2), int(screen_height / 2))
-        self.vertex = self.create_vertex(0)
+        self.rotation = 0
+        self.expantion_value = 0
+        self.vertex = self.create_vertex()
         self.line_width = line_width
         self.surface = surface
         self.trapezoid_height = 40
-        self.rotation = 0
 
     def draw_hexagon(self, color):
         """
@@ -369,24 +370,24 @@ class Hexagon:
             self.vertex["CENTER_TOP_30_DEGREES_LEFT"],
         ])
 
-    def update_vertex(self, rotation):
+    def update_vertex(self, rotation, expand):
         self.rotation = rotation
-        self.vertex = self.create_vertex(rotation)
+        self.expantion_value = expand
+        self.vertex = self.create_vertex()
 
-    def create_vertex(self, rotation):
+    def create_vertex(self):
         """
         To avoid memorizing the coordinates of the 6 hexagon vertices, keep them in a dictionary
         Updating with totation and set the rotation to use in the drawing of trapezoids
         """
-        self.rotation = rotation
         width, height = self.center_coords
         return {
-            "CENTER_BOTTOM_30_DEGREES_RIGHT": self.rotate([width, height + self.radius], math.radians(-30 + rotation)),
-            "CENTER_BOTTOM_30_DEGREES_LEFT": self.rotate([width, height + self.radius], math.radians(30 + rotation)),
-            "CENTER_RIGHT": self.rotate([width + self.radius, height], math.radians(0 + rotation)),
-            "CENTER_LEFT": self.rotate([width - self.radius, height], math.radians(0 + rotation)),
-            "CENTER_TOP_30_DEGREES_RIGHT": self.rotate([width, height + -1 *self.radius], math.radians(30 + rotation)),
-            "CENTER_TOP_30_DEGREES_LEFT": self.rotate([width, height + -1 *self.radius], math.radians(-30 + rotation))
+            "CENTER_BOTTOM_30_DEGREES_RIGHT": self.rotate([width, height + self.radius + self.expantion_value], math.radians(-30 + self.rotation)),
+            "CENTER_BOTTOM_30_DEGREES_LEFT": self.rotate([width, height + self.radius + self.expantion_value], math.radians(30 + self.rotation)),
+            "CENTER_RIGHT": self.rotate([width + self.radius + self.expantion_value, height], math.radians(0 + self.rotation)),
+            "CENTER_LEFT": self.rotate([width - self.radius - self.expantion_value , height], math.radians(0 + self.rotation)),
+            "CENTER_TOP_30_DEGREES_RIGHT": self.rotate([width, height + -1 * self.radius - self.expantion_value], math.radians(30 + self.rotation)),
+            "CENTER_TOP_30_DEGREES_LEFT": self.rotate([width, height + -1 * self.radius - self.expantion_value], math.radians(-30 + self.rotation))
         }
 
     def rotate(self, point, angle):
