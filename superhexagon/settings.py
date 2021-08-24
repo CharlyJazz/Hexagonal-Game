@@ -1,3 +1,5 @@
+import pygame
+
 WIDTH = 1200
 HEIGHT = 600
 CENTER_COORDS = (int(WIDTH / 2), int(HEIGHT / 2))
@@ -12,3 +14,8 @@ SMALL_HEXAGON_RADIUS = 40
 LIMIT_PROGRESS = CIRCLE_RADIUS - SMALL_HEXAGON_RADIUS
 ARROW_SPEED = 0.075
 ANGLES_PER_DELTATIME = [25, 35, 40, 55, 65]
+SOUNDFONT = '/usr/local/Cellar/fluid-synth/2.2.2/share/fluid-synth/sf2/VintageDreamsWaves-v2.sf2'
+DRIVER = 'coreaudio'
+MOVING = pygame.USEREVENT + 1
+EXPANSION = pygame.USEREVENT + 2
+HEXAGON_DISSAPEAR = pygame.USEREVENT + 3

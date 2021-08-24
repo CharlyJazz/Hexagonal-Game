@@ -111,8 +111,10 @@ class Spawner:
                 should_create = False
                 break
         
+        # Choose quantity of pattern for the round
+        # And send event to play a chord
         if should_create:
-            # Choose quantity of pattern for the round
+            pygame.event.post(pygame.event.Event(HEXAGON_DISSAPEAR))
             self.quantity_of_patterns = rd.randint(1, 3)
             self.create_pattern()
 
