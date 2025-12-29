@@ -4,9 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-collision = "==1.2.2"
-numpy = "==1.17.4"
+collision = "*"
+numpy = "*"
 pygame = "*"
+stable-baselines3 = "*"
+gymnasium = "*"
+tensorboard = "*"
 
 [dev-packages]
 

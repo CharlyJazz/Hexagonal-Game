@@ -1,2 +1,6 @@
 __pycache__/*
 superhexagon/__pycache__/*
+tensorboard_logs/*
+models/best_ppo_model/*
+rl_approaches/__pycache__/*
+models/*

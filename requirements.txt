@@ -1,3 +1,11 @@
 collision==1.2.2
-pygame==1.9.6
-numpy==1.17.4
+pygame>=2.1.0
+numpy>=1.21.0
+# RL Dependencies
+stable-baselines3==2.0.0
+gymnasium==0.28.1
+matplotlib==3.7.1
+tensorboard==2.13.0
+# PyTorch Dependencies (optional)
+torch==2.0.1
+torchvision==0.15.2

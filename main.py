@@ -12,9 +12,9 @@ from pyfluidsynth import fluidsynth
 
 def main():
     fs = fluidsynth.Synth()
-    fs.start(driver = DRIVER)
+    # fs.start(driver = DRIVER)
     sfid = fs.sfload(SOUNDFONT) 
-    fs.program_select(0, sfid, 0, 16)
+    # fs.program_select(0, sfid, 0, 16)
     pygame.init()
     screen = pygame.display.set_mode((WIDTH,HEIGHT))
     pygame.display.set_caption('Hexagon Game')
@@ -52,14 +52,16 @@ def main():
                 chord_notes = CHORDS[numpy.random.randint(0, len(CHORDS))]["midi_notes"]
                 
                 for i in chord_notes:
-                    fs.noteon(0, i, 25)
+                    pass
+                    # fs.noteon(0, i, 25)
                 
                 def chord_end(fs, chord_notes_arg):
-                    for i in chord_notes_arg:
-                        fs.noteoff(0, i)
+                    pass
+                    # for i in chord_notes_arg:
+                        # fs.noteoff(0, i)
 
                 # Off notes in another thread in about one second
-                Timer(1.0, chord_end, [fs, chord_notes]).start()
+                # Timer(1.0, chord_end, [fs, chord_notes]).start()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     game.move_left(ARROW_SPEED)
